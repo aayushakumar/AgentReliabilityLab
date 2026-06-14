@@ -1,0 +1,8 @@
+flask==2.3.0
+requests==2.26.0
+pyyaml==5.1
+# Note: pyyaml 5.1 has known RCE vulnerability CVE-2020-1747
+cryptography==3.0
+# Note: cryptography 3.0 has known vulnerabilities
+paramiko==2.7.1
+# Note: paramiko 2.7.1 has CVE-2022-24302

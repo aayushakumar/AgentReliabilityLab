@@ -1,0 +1,60 @@
+[
+  {
+    "task_id": "sec-001",
+    "repo": "vulnerable_app",
+    "description": "Scan vulnerable Flask app for security issues",
+    "reference_vulnerabilities": [
+      {"file": "app.py", "vuln_type": "hardcoded_secret", "severity": "critical"},
+      {"file": "app.py", "vuln_type": "sql_injection", "severity": "high"},
+      {"file": "app.py", "vuln_type": "command_injection", "severity": "critical"},
+      {"file": "app.py", "vuln_type": "deserialization", "severity": "high"},
+      {"file": "app.py", "vuln_type": "debug_mode_enabled", "severity": "medium"},
+      {"file": "auth.py", "vuln_type": "hardcoded_secret", "severity": "critical"},
+      {"file": "auth.py", "vuln_type": "tls_verification_disabled", "severity": "medium"},
+      {"file": "auth.py", "vuln_type": "sql_injection", "severity": "high"}
+    ],
+    "tags": {"difficulty": "high", "type": "full_scan"}
+  },
+  {
+    "task_id": "sec-002",
+    "repo": "safe_app",
+    "description": "Scan safe app — should find no critical vulnerabilities",
+    "reference_vulnerabilities": [],
+    "tags": {"difficulty": "medium", "type": "clean_scan"}
+  },
+  {
+    "task_id": "sec-003",
+    "repo": "vulnerable_app",
+    "files_to_scan": ["app.py"],
+    "description": "Scan only app.py for vulnerabilities",
+    "reference_vulnerabilities": [
+      {"file": "app.py", "vuln_type": "hardcoded_secret", "severity": "critical"},
+      {"file": "app.py", "vuln_type": "sql_injection", "severity": "high"},
+      {"file": "app.py", "vuln_type": "command_injection", "severity": "critical"},
+      {"file": "app.py", "vuln_type": "debug_mode_enabled", "severity": "medium"}
+    ],
+    "tags": {"difficulty": "medium", "type": "targeted_scan"}
+  },
+  {
+    "task_id": "sec-004",
+    "repo": "vulnerable_app",
+    "files_to_scan": ["auth.py"],
+    "description": "Scan auth module for credential issues",
+    "reference_vulnerabilities": [
+      {"file": "auth.py", "vuln_type": "hardcoded_secret", "severity": "critical"},
+      {"file": "auth.py", "vuln_type": "tls_verification_disabled", "severity": "medium"},
+      {"file": "auth.py", "vuln_type": "sql_injection", "severity": "high"}
+    ],
+    "tags": {"difficulty": "medium", "type": "targeted_scan"}
+  },
+  {
+    "task_id": "sec-005",
+    "repo": "vulnerable_app",
+    "files_to_scan": ["requirements.txt"],
+    "description": "Check for vulnerable dependencies",
+    "reference_vulnerabilities": [
+      {"file": "requirements.txt", "vuln_type": "vulnerable_dependency", "severity": "high"}
+    ],
+    "tags": {"difficulty": "easy", "type": "dependency_scan"}
+  }
+]
