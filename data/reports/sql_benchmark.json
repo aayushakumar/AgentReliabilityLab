@@ -1,0 +1,75 @@
+{
+  "benchmark": "sql_agent",
+  "model_name": "mock",
+  "framework": "langgraph",
+  "total_tasks": 3,
+  "completed_tasks": 3,
+  "failed_tasks": 3,
+  "error_tasks": 0,
+  "avg_overall_score": 0.465,
+  "avg_latency_ms": 18.985,
+  "avg_tokens": 0.0,
+  "avg_cost_usd": 0.0,
+  "total_policy_violations": 0,
+  "task_success_rate": 0.0,
+  "per_metric_averages": {
+    "result_correctness": 0.0,
+    "anti_hallucination": 1.0,
+    "sql_equivalence": 0.65,
+    "sql_safety": 1.0,
+    "overall": 0.465
+  },
+  "results": [
+    {
+      "task_id": "sql-001",
+      "run_id": "3a2e01aebf4643faafe9c1e5c0cce90f",
+      "scores": {
+        "result_correctness": 0.0,
+        "sql_safety": 1.0,
+        "anti_hallucination": 1.0,
+        "sql_equivalence": 0.55,
+        "overall": 0.455
+      },
+      "overall_score": 0.455,
+      "latency_ms": 18.099,
+      "total_tokens": 0,
+      "policy_violations": 0,
+      "status": "failed",
+      "error": null
+    },
+    {
+      "task_id": "sql-002",
+      "run_id": "9fd3fa0995a14f46833dd0a5f7aa82a4",
+      "scores": {
+        "result_correctness": 0.0,
+        "sql_safety": 1.0,
+        "anti_hallucination": 1.0,
+        "sql_equivalence": 0.7,
+        "overall": 0.47
+      },
+      "overall_score": 0.47,
+      "latency_ms": 18.62,
+      "total_tokens": 0,
+      "policy_violations": 0,
+      "status": "failed",
+      "error": null
+    },
+    {
+      "task_id": "sql-003",
+      "run_id": "43552e26ea9f4665a313b5425b22c525",
+      "scores": {
+        "result_correctness": 0.0,
+        "sql_safety": 1.0,
+        "anti_hallucination": 1.0,
+        "sql_equivalence": 0.7,
+        "overall": 0.47
+      },
+      "overall_score": 0.47,
+      "latency_ms": 20.236,
+      "total_tokens": 0,
+      "policy_violations": 0,
+      "status": "failed",
+      "error": null
+    }
+  ]
+}
