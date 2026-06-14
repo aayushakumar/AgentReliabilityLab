@@ -71,11 +71,11 @@ ARL answers all four by providing a unified stack from evaluation graders down t
 ┌────────────────────────────────────────────────────────────────────────┐
 │                     Next.js 14 Dashboard  (port 3000)                  │
 │                                                                        │
-│  Overview · Run History · Run Detail · Leaderboard · HITL · Policy    │
+│  Overview · Run History · Run Detail · Leaderboard · HITL · Policy     │
 └──────────────────────────────┬─────────────────────────────────────────┘
                                │  HTTP / JSON
 ┌──────────────────────────────▼─────────────────────────────────────────┐
-│                    FastAPI Backend  (port 8000)                         │
+│                    FastAPI Backend  (port 8000)                        │
 │                                                                        │
 │  GET /health   GET /api/stats                                          │
 │  /api/runs     /api/traces    /api/evals    /api/policy                │
@@ -94,15 +94,15 @@ ARL answers all four by providing a unified stack from evaluation graders down t
     └───────────────┴──────────────────┴───────────────────┘
                                 │
                     ┌───────────▼───────────┐
-                    │  SQLite (dev/test)     │
-                    │  PostgreSQL (prod)     │
+                    │  SQLite (dev/test)    │
+                    │  PostgreSQL (prod)    │
                     │                       │
                     │  runs · spans         │
                     │  policy_events        │
                     └───────────────────────┘
                                 │
                     ┌───────────▼────────────┐
-                    │  Agents (LangGraph)     │
+                    │  Agents (LangGraph)    │
                     │  SQLAgent              │
                     │  RAGAgent              │
                     │  SecurityAgent         │
@@ -1368,7 +1368,7 @@ make test && make lint
 
 MIT License
 
-Copyright (c) 2024 AgentReliabilityLab Contributors
+Copyright (c) 2026 AgentReliabilityLab Contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
