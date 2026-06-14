@@ -1,0 +1,66 @@
+services:
+
+  # ─────────────────────────── API ─────────────────────────────────────
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    container_name: arl-api
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: sqlite:////app/data/arl.db
+      LLM_PROVIDER: ${LLM_PROVIDER:-mock}
+      OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-http://ollama:11434}
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-llama3.2}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4o-mini}
+      HITL_ENABLED: ${HITL_ENABLED:-true}
+      HITL_RISK_THRESHOLD: ${HITL_RISK_THRESHOLD:-0.7}
+      CORS_ORIGINS: http://localhost:3000,http://web:3000
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    volumes:
+      - arl_data:/app/data
+      - .:/app
+    working_dir: /app
+    command: uvicorn apps.api.main:app --host 0.0.0.0 --port 8000 --reload
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ─────────────────────────── Web Dashboard ────────────────────────────
+  web:
+    image: node:20-alpine
+    container_name: arl-web
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    working_dir: /app
+    volumes:
+      - ./apps/web:/app
+    environment:
+      NEXT_PUBLIC_API_URL: http://api:8000
+      NODE_ENV: development
+    command: sh -c "npm install && npm run dev"
+    depends_on:
+      api:
+        condition: service_healthy
+
+  # ─────────────────────────── Ollama (optional) ────────────────────────
+  # Uncomment to enable local LLM inference
+  # ollama:
+  #   image: ollama/ollama:latest
+  #   container_name: arl-ollama
+  #   restart: unless-stopped
+  #   ports:
+  #     - "11434:11434"
+  #   volumes:
+  #     - ollama_data:/root/.ollama
+  #   # Pull a model after first start: docker exec arl-ollama ollama pull llama3.2
+
+volumes:
+  arl_data:
+  # ollama_data:
